@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Firmas Digitales | Crea tu firma transparente gratis</title>
+    <meta name="description" content="Dibuja y descarga tu firma digital con fondo transparente (PNG) en segundos. Lista para usar en PDFs, Word y contratos.">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; flex-direction: column; align-items: center; 
+            background-color: #f7f9fc; padding: 40px 20px; color: #333;
+        }
+        h1 { margin-bottom: 10px; text-align: center; font-size: 2rem; color: #1a202c; }
+        p { margin-bottom: 30px; text-align: center; color: #4a5568; max-width: 600px; line-height: 1.5; }
+        
+        .canvas-container {
+            background-color: #ffffff;
+            border: 2px dashed #cbd5e0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            touch-action: none; /* Evita que la pantalla haga scroll al dibujar en móvil */
+        }
+        
+        canvas { cursor: crosshair; border-radius: 12px; }
+        
+        .controls { display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        #clear-btn { background-color: #edf2f7; color: #4a5568; }
+        #clear-btn:hover { background-color: #e2e8f0; }
+        
+        #download-btn { background-color: #3182ce; color: #ffffff; }
+        #download-btn:hover { background-color: #2b6cb0; transform: translateY(-2px); }
+        
+        .footer-text { margin-top: 40px; font-size: 0.85rem; color: #a0aec0; }
+    </style>
+</head>
+<body>
+
+    <h1>Generador de Firmas Digitales</h1>
+    <p>Dibuja tu firma en el recuadro de abajo. Cuando termines, descárgala gratis como una imagen PNG con fondo transparente, ideal para firmar tus documentos PDF o Word.</p>
+
+    <div class="canvas-container">
+        <canvas id="signature-pad" width="600" height="250"></canvas>
+    </div>
+
+    <div class="controls">
+        <button id="clear-btn">Borrar Lienzo</button>
+        <button id="download-btn">Descargar Firma (PNG)</button>
+    </div>
+
+    <p class="footer-text">100% privado: Tu firma no se guarda en ningún servidor, se genera directamente en tu navegador.</p>
+
+    <script>
+        const canvas = document.getElementById('signature-pad');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        // Ajustar tamaño del canvas para móviles
+        function resizeCanvas() {
+            const ratio = Math.max(window.devicePixelRatio || 1, 1);
+            const containerWidth = Math.min(window.innerWidth - 40, 600);
+            
+            // Guardar el contenido actual antes de redimensionar
+            const data = canvas.toDataURL();
+            
+            canvas.style.width = containerWidth + 'px';
+            canvas.style.height = '250px';
+            canvas.width = containerWidth * ratio;
+            canvas.height = 250 * ratio;
+            
+            ctx.scale(ratio, ratio);
+            
+            // Configuración del pincel
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.strokeStyle = '#000000'; // Tinta negra
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas(); // Llamada inicial
+
+        // Obtener coordenadas exactas del ratón o el dedo
+        function getCoordinates(event) {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = event.clientX || event.touches[0].clientX;
+            const clientY = event.clientY || event.touches[0].clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function startDrawing(e) {
+            isDrawing = true;
+            const coords = getCoordinates(e);
+            ctx.beginPath();
+            ctx.moveTo(coords.x, coords.y);
+            e.preventDefault(); // Evitar comportamientos por defecto del navegador
+        }
+
+        function draw(e) {
+            if (!isDrawing) return;
+            const coords = getCoordinates(e);
+            ctx.lineTo(coords.x, coords.y);
+            ctx.stroke();
+            e.preventDefault();
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        // Eventos para Ratón (PC)
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseout', stopDrawing);
+
+        // Eventos para Táctil (Móviles/Tablets)
+        canvas.addEventListener('touchstart', startDrawing, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        canvas.addEventListener('touchend', stopDrawing);
+
+        // Botón Borrar
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Botón Descargar
+        document.getElementById('download-btn').addEventListener('click', () => {
+            // El canvas por defecto es transparente si no le pintamos fondo
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = dataURL;
+            link.download = 'mi-firma-transparente.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body>
+</html>
