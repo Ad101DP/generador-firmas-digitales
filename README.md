@@ -13,7 +13,7 @@ Una aplicación web sencilla, rápida y responsiva para crear firmas digitales e
 
 ---
 
-## 🚀 Cómo usarlo
+## 🚀 Cómo usarlo (instalación sencilla)
 
 Como es un proyecto de HTML puro, no necesitas instalar nada complejo como Node.js ni configurar servidores.
 
