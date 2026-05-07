@@ -10,6 +10,3 @@ Una aplicación web súper sencilla, rápida y responsiva para crear firmas digi
 *   **Fondo Transparente:** Exportación directa a `.png` con canal alfa (transparente).
 *   **Diseño Responsivo:** Funciona perfectamente en PC, tablets y teléfonos móviles (soporte táctil integrado).
 *   **Ligero y Rápido:** Construido en un solo archivo, sin librerías externas ni dependencias pesadas. Carga instantánea.
-
----
-
