@@ -1,6 +1,6 @@
 # ✍️ Generador de Firmas Digitales Transparentes
 
-Una aplicación web súper sencilla, rápida y responsiva para crear firmas digitales en segundos. Dibuja tu firma con el ratón o el dedo y descárgala como una imagen PNG con fondo transparente, lista para insertar en documentos PDF, contratos o archivos de Word.
+Una aplicación web sencilla, rápida y responsiva para crear firmas digitales en segundos. Dibuja tu firma con el ratón o el dedo y descárgala como una imagen PNG con fondo transparente, lista para insertar en documentos PDF, contratos o archivos de Word.
 
 ---
 
