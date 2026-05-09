@@ -10,13 +10,3 @@ Una aplicación web sencilla, rápida y responsiva para crear firmas digitales e
 *   **Fondo Transparente:** Exportación directa a `.png` con canal alfa (transparente).
 *   **Diseño Responsivo:** Funciona perfectamente en PC, tablets y teléfonos móviles (soporte táctil integrado).
 *   **Ligero y Rápido:** Construido en un solo archivo, sin librerías externas ni dependencias pesadas. Carga instantánea.
-
----
-
-## Cómo usarlo (instalación sencilla)
-
-Como es un proyecto de HTML puro, no necesitas instalar nada complejo como Node.js ni configurar servidores.
-
-1. Clona este repositorio en tu máquina local:
-   ```bash
-   git clone [https://github.com/Ad101DP/generador-firmas-digitales.git](https://github.com/Ad101DP/generador-firmas-digitales.git)
