@@ -4,7 +4,7 @@ Una aplicación web sencilla, rápida y responsiva para crear firmas digitales e
 
 ---
 
-## ✨ Características Principales
+## Características Principales
 
 *   **100% Client-Side (Privacidad total):** No hay base de datos ni servidor. La firma se procesa exclusivamente en el navegador del usuario y no se guarda en ningún sitio.
 *   **Fondo Transparente:** Exportación directa a `.png` con canal alfa (transparente).
@@ -13,7 +13,7 @@ Una aplicación web sencilla, rápida y responsiva para crear firmas digitales e
 
 ---
 
-## 🚀 Cómo usarlo (instalación sencilla)
+## Cómo usarlo (instalación sencilla)
 
 Como es un proyecto de HTML puro, no necesitas instalar nada complejo como Node.js ni configurar servidores.
 
